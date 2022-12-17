@@ -1,0 +1,11 @@
+export const fontLabel = "#DBDBDB"
+export const fontColor = "#666666"
+export const titleColor ="#126BA5"
+export const buttonSelecionado ="#CFCF1CF"
+export const fontColorFooter ="#52B6FF"
+export const fontColorWhite ="#FFFFFF"
+export const fontColorGreen ="#8FC549"
+
+export const backgroundColor ="#E5E5E5"
+export const backgroundColorHeader ="#126BA5"
+export const backgroundColorCard ="#FFFFFF"
