@@ -5,9 +5,7 @@ import GoalDayPage from "./pages/GoalDayPage/GoalDayPage"
 import HistoricGoalsPage from "./pages/HistoricGoalsPage/HistoricGoalsPage"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-
 export default function App() {
-
 
   return (   
     <BrowserRouter>
@@ -22,8 +20,6 @@ export default function App() {
  
       </Routes>
 
-      
-    
     </BrowserRouter>
 
     )
