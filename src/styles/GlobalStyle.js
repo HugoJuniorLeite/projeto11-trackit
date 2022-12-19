@@ -13,13 +13,15 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video,html, input,button {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	box-sizing: border-box;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -28,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+
 }
 ol, ul {
 	list-style: none;
@@ -44,7 +47,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-button {
+
+/*button {
 	height: 43px;
 
 	border-radius: 3px;
@@ -77,7 +81,7 @@ input {
 		font-style: italic;
 	}
 	
-}
+}*/
 `
 
 export default GlobalStyle

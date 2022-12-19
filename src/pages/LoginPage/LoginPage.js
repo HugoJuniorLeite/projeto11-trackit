@@ -47,7 +47,7 @@ export default function LoginPage (){
             required/>
             
           </label>
-    
+  
           <label>
             <input 
                 placeholder="password"
@@ -57,13 +57,10 @@ export default function LoginPage (){
               onChange={handleChangeLogin}
               required/>
             </label>
-    
-    
             <input type="submit" />
         </form>
             <Link to="/cadastro"><span>Não tem uma conta? Cadastre-se!</span>
             </Link>
- 
     </>
         )
 }

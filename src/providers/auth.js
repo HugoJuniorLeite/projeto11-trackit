@@ -17,7 +17,25 @@ export const AuthProvider = (props) => {
         password:"",    
    })
 
-    const [habits, setHabits]=useState([])
+    const [newHabit, setNewHabit]=useState({
+        'input':[{
+        letra:""
+        }],
+        'days':[
+        {id:1, name: "D", weekday: "Domingo", selecte:false},
+        {id:2, name: "S", weekday: "Segunda-feira", selecte:false},
+        {id:3, name: "T", weekday: "Terça-feira", selecte:false},
+        {id:4, name: "Q", weekday: "Quarta-feira", selecte:false},
+        {id:5, name: "Q", weekday: "Quinta-feira", selecte:false},
+        {id:6, name: "S", weekday: "Sexta-feira", selecte:false},
+        {id:7, name: "S", weekday: "Sabado", selecte:false}
+    ]
+})
+
+const [create, setCreate] = useState(false)
+
+
+const [listedHabites, setListedHabites] =useState([])
 
     const images ={logo:logo, description: "imagem da tracklt"}
     const BASE_URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit"
@@ -59,7 +77,16 @@ export const AuthProvider = (props) => {
         */
     },[])
     return(
-        <AuthContext.Provider value={{user,setUser,inputs,setInputs,images,BASE_URL, habits,setHabits, token, setToken}}>
+        <AuthContext.Provider value={{user,setUser,
+        inputs,setInputs,
+        images,
+        BASE_URL,
+        listedHabites, setListedHabites,
+        newHabit,setNewHabit,
+        token, setToken,
+        create,setCreate,
+       }}>
+            
             {props.children}
         </AuthContext.Provider>
     )

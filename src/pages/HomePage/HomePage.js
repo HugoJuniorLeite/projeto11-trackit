@@ -4,10 +4,11 @@ import axios from "axios"
 import { useEffect } from "react"
 import { useAuth } from "../../providers/auth"
 import styled from "styled-components"
+import Habits from "../../components/Habits"
 
 export default function HomePage (){
 
-    const {habits, setHabits, BASE_URL,token} = useAuth()
+    const {listedHabites, setListedHabites, BASE_URL,token,create, setCreate} = useAuth()
 
     
     console.log(token,"token")
@@ -15,16 +16,20 @@ export default function HomePage (){
        
         const config = {
             headers: {
-                Authorization: `Bearer ${token}`,
-                
+                Authorization: `Bearer ${token}`,            
             },
         };
         axios.get(`${BASE_URL}/habits`, config)
-        .then((res)=> {setHabits(res.data)
-            console.log(habits,"foi")})
+        .then((res)=> {setListedHabites(res.data)
+            console.log(listedHabites,"foi")})
         .catch((err) => console.log(err.response.data))
     },[])
 
+    function habilitCreate(){
+
+setCreate(!create)
+    }
+    
     return(
         <>
             <Header/>
@@ -32,8 +37,11 @@ export default function HomePage (){
             <ContainerHomePage>
                 <span>
                 <h1>Meus hábitos</h1>
-                <button>+</button>
+                <ButtonAdd onClick={habilitCreate}>+</ButtonAdd>
                 </span>
+
+                <Habits></Habits>
+                
                 <h2>Você não tem nenhum hábito cadastrado ainda.
                 Adicione um hábito para começar a trackear!
                 </h2>       
@@ -48,6 +56,7 @@ width:375px;
 min-height:527px;
 padding-top:70px;
 padding-bottom:80px;
+background-color:#E5E5E5;
 span{
     height:77px;
     display:flex;
@@ -71,9 +80,12 @@ h2{
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
-    margin: 28px 0 20px 0;
+    margin: 28px 0 20px 19px;
+    color: #666666;
 }
-button{
+`
+
+const ButtonAdd =styled.button`
     width:40px;
     height:35px;
     background-color:#52B6FF;
@@ -86,6 +98,4 @@ button{
     letter-spacing: 0em;
     text-align: center;
     color:#FFFFFF;
-
-}
 `
