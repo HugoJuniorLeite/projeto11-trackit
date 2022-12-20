@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { useAuth } from "../../providers/auth";
 
 export default function LoginPage (){
@@ -30,9 +31,8 @@ export default function LoginPage (){
 
     }
     
-        return(
-            <>
-            <div>{user.email}</div>
+         return(
+            <ContainerLogin>
             <img src={images.logo} alt={images.description}/>
             
         <form onSubmit={handleSubmitLogin}>
@@ -49,18 +49,58 @@ export default function LoginPage (){
           </label>
   
           <label>
-            <input 
-                placeholder="password"
+            <input
+                placeholder="senha"
               type="password" 
               name="password"
               value={user.password || ""}
               onChange={handleChangeLogin}
               required/>
             </label>
-            <input type="submit" />
+            <button type="submit">Entrar</button>
+           
         </form>
             <Link to="/cadastro"><span>Não tem uma conta? Cadastre-se!</span>
             </Link>
-    </>
+    </ContainerLogin>
         )
 }
+
+const ContainerLogin =styled.main`
+width:375px;
+height:658px;
+display:flex; 
+flex-direction:column;
+align-items:center;
+img{
+  width:180px;
+  height: 178.38px;
+  margin-top:63px;
+  margin-bottom:31.62px;
+}
+button{
+  width:303PX;
+  height:45px;
+  margin-left:36px;
+  margin-bottom:25px;
+  background-color:#52B6FF;
+  border-radius:4.64px;
+  border: 1px solid #52B6FF;
+  color:#FFFFFF;
+  font-family: 'Lexend Deca';
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+span{
+  color:#52B6FF;
+  font-family: 'Lexend Deca';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+`

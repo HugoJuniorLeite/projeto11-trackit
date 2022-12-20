@@ -1,19 +1,19 @@
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useAuth } from "../../providers/auth"
 import styled from "styled-components"
 import Habits from "../../components/Habits"
+import HabitList from "../../components/HabitList"
 
 export default function HomePage (){
 
     const {listedHabites, setListedHabites, BASE_URL,token,create, setCreate} = useAuth()
-
+    const [status, setStatus] =useState(false)
     
     console.log(token,"token")
     useEffect(()=>{
-       
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,            
@@ -23,12 +23,18 @@ export default function HomePage (){
         .then((res)=> {setListedHabites(res.data)
             console.log(listedHabites,"foi")})
         .catch((err) => console.log(err.response.data))
-    },[])
+    },[status])
 
+
+if(listedHabites.lenght ===0  ){
+
+    return
+}
     function habilitCreate(){
 
 setCreate(!create)
-    }
+    
+}
     
     return(
         <>
@@ -40,12 +46,20 @@ setCreate(!create)
                 <ButtonAdd onClick={habilitCreate}>+</ButtonAdd>
                 </span>
 
-                <Habits></Habits>
+                <Habits status={status} setStatus={setStatus}></Habits>
                 
+                {listedHabites.map(l=>
+                    (<HabitList days={l.days} name={l.name} id={l.id}/>))}
+                
+                {listedHabites.lenght == 0 ?
                 <h2>Você não tem nenhum hábito cadastrado ainda.
                 Adicione um hábito para começar a trackear!
-                </h2>       
-                </ContainerHomePage>
+                </h2>
+                :""
+                }
+
+
+                             </ContainerHomePage>
             <Footer/>
         </>
         )

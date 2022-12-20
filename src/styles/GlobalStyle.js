@@ -82,6 +82,22 @@ input {
 	}
 	
 }*/
+input{
+width:303px;
+height:45px;
+margin: 0 36px 6px 36px;
+border: 1px solid #D4D4D4;
+border-radius:5px;
+&::placeholder{
+    padding-left:11px;
+    font-family: "Lexend Deca";
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    color:#DBDBDB;
+}
+}
 `
-
 export default GlobalStyle

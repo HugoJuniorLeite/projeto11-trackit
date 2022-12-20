@@ -1,62 +1,94 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styled from "styled-components"
 import { useAuth } from "../providers/auth"
 import Habit from "./Habit"
 
-export default function Habits(){
+
+export default function Habits({setStatus, status}){
     
-    const {newHabit, setNewHabit,create} =useAuth()
+    const {/*newHabit, setNewHabit*/objDays,create,setCreate, BASE_URL, token,setListedHabites} =useAuth()
     
-    const [seats, setSeats] = useState([]);
-    const [selectedDay, setSelectedDay] = useState(false);
+    const [newHabit, setNewHabit]=useState('');
+    const [selectedDay, setSelectedDay] = useState([]);
     
-    function handleChangeHabit(e){
-        
-        const name = e.target.name;
-        const value = e.target.value;
-        setNewHabit(values => ({...values, [name]: value}))
-           console.log(newHabit)
-    }
+//    const [status, setStatus] =useState(false)
+
+  
 
 
     function handleSubmit(e){
         e.preventDefault();
 
+        
+            
+            const body = { name:newHabit , days: [...selectedDay]} 
+            console.log(body,"body")
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,            
+                },
+            };
+            axios.post(
+            "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+            ,body, config)
+            .then((res)=> {setStatus(!status)
+                setCreate(!create)
+//                setSelectedDay("")
+                setNewHabit("")
+                console.log(res.data,"foi")})
+            .catch((err) => console.log(err.response.data))
+       
     }
 
-    function handleDay(day, selected){
+    function handleDay(day){
+        
+    const isSelected = selectedDay.some((s) => s === day)
+//        console.log(isSelected,"isselected", selectedDay,"selectedDay")
+    if(isSelected){
+       
+//            setStatus(!status)
+        const newList = selectedDay.filter((s) => s !== day)
+        setSelectedDay(newList)
+     }   else{
+        setSelectedDay([...selectedDay, day])
+     }
 
-    
-        setSelectedDay(!selectedDay)
-          console.log(selectedDay,"dia")
-         
     }
+    console.log(selectedDay,"lista nova",newHabit,"new")
     
     return(
         <>
         {create===false ? '' :
-        <FormCard onSubmit={handleSubmit}>
+        
+        <Container>
          
         <label>
         <InputHabit
         placeholder="nome do hábito"
         type="text"
-        name="letra"
-        value={newHabit.input.letra}
-        onChange={handleChangeHabit}
+        id="title"
+        value={newHabit}
+        onChange={e => setNewHabit(e.target.value)}
         ></InputHabit>
         </label>
         
         <ContainerButton>
-        {newHabit.days.map(e=>(<Habit
-        key={e.weekday} id={e.id} name={e.name} handleDay={handleDay} selected={e.selecte}
-        ></Habit>))}
+        {objDays.map(day=>(
+        <Habit
+        key={day.weekday} 
+        day={day.id} 
+        name={day.name} 
+        handleDay={handleDay}
+        isSelected={selectedDay.some((s) => s === day)}
+      //  teste={status}
+       ></Habit>))}
         </ContainerButton>
 
-        <ButtonSubmit type="submit">Salvar</ButtonSubmit>
-        </FormCard>
-        }</>
-
+        <ButtonSubmit onClick={handleSubmit}>Salvar</ButtonSubmit>
+        </Container>
+        }
+    </>
     )
 }
 
@@ -76,11 +108,10 @@ border-radius:5px;
     letter-spacing: 0em;
     text-align: left;
     color:#DBDBDB;
-
 }
 `
 
-const FormCard =styled.form`
+const Container =styled.main`
 width: 340px;
 height: 180px;
 border-radius:5px;

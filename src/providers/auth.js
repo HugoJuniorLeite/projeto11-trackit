@@ -17,20 +17,16 @@ export const AuthProvider = (props) => {
         password:"",    
    })
 
-    const [newHabit, setNewHabit]=useState({
-        'input':[{
-        letra:""
-        }],
-        'days':[
-        {id:1, name: "D", weekday: "Domingo", selecte:false},
-        {id:2, name: "S", weekday: "Segunda-feira", selecte:false},
-        {id:3, name: "T", weekday: "Terça-feira", selecte:false},
-        {id:4, name: "Q", weekday: "Quarta-feira", selecte:false},
-        {id:5, name: "Q", weekday: "Quinta-feira", selecte:false},
-        {id:6, name: "S", weekday: "Sexta-feira", selecte:false},
-        {id:7, name: "S", weekday: "Sabado", selecte:false}
+    const objDays =[
+        {id:1, name: "D", weekday: "Domingo", selected:false},
+        {id:2, name: "S", weekday: "Segunda-feira", selected:false},
+        {id:3, name: "T", weekday: "Terça-feira", selected:false},
+        {id:4, name: "Q", weekday: "Quarta-feira", selected:false},
+        {id:5, name: "Q", weekday: "Quinta-feira", selected:false},
+        {id:6, name: "S", weekday: "Sexta-feira", selected:false},
+        {id:7, name: "S", weekday: "Sabado", selected:false}
     ]
-})
+
 
 const [create, setCreate] = useState(false)
 
@@ -82,7 +78,8 @@ const [listedHabites, setListedHabites] =useState([])
         images,
         BASE_URL,
         listedHabites, setListedHabites,
-        newHabit,setNewHabit,
+        //newHabit,setNewHabit,
+        objDays,
         token, setToken,
         create,setCreate,
        }}>

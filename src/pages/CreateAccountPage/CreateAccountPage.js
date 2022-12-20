@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../../providers/auth"
 import { useNavigate } from "react-router-dom"
+import styled from "styled-components";
 
 //import logo from "../../assets/images/track.svg"
 
@@ -37,7 +38,7 @@ export default function CreateAccountPage() {
 
     return (
 
-        <>
+        <ContainerCreateAccount>
 
             <img src={images.logo} alt={images.description} />
 
@@ -79,12 +80,53 @@ export default function CreateAccountPage() {
                         onChange={handleChange} />
                 </label>
 
-                <input type="submit" />
+                <button type="submit">Cadastrar</button>
             </form>
             <Link to="/"><span>Já tem uma conta? Faça login!</span>
             </Link>
 
             <div>{inputs.email}</div>
-        </>
+        </ContainerCreateAccount>
     )
 }
+
+const ContainerCreateAccount = styled.main`
+width:375px;
+height:658px;
+display:flex; 
+flex-direction:column;
+align-items:center;
+img{
+  width:180px;
+  height: 178.38px;
+  margin-top:63px;
+  margin-bottom:31.62px;
+}
+button{
+    width:303PX;
+    height:45px;
+    margin-left:36px;
+    margin-bottom:25px;
+    background-color:#52B6FF;
+    border-radius:4.64px;
+    border: 1px solid #52B6FF;
+    color:#FFFFFF;
+    font-family: 'Lexend Deca';
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+  span{
+    color:#52B6FF;
+    font-family: 'Lexend Deca';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+
+
+  }
+  `
