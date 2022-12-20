@@ -26,7 +26,7 @@ export default function CreateAccountPage() {
 
         axios.post(`${BASE_URL}/auth/sign-up`, inputs)
             .then((res) => navigate('/'))
-            .catch((err) => console.log(err.respose.data, "deu ruim"))
+            .catch((err) => alert(err.respose.data))
 
     }
 
