@@ -5,7 +5,7 @@ import { useAuth } from "../../providers/auth"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components";
 
-//import logo from "../../assets/images/track.svg"
+
 
 export default function CreateAccountPage() {
 
@@ -23,12 +23,6 @@ export default function CreateAccountPage() {
     function handleSubmit(e) {
         e.preventDefault()
 
-        //    const email =inputs.email
-        //  const password =inputs.password
-        //const name =inputs.name
-        // const image = inputs.image
-        //  const registrationForm =inputs
-        //  console.log(registrationForm,"arquivo");
 
         axios.post(`${BASE_URL}/auth/sign-up`, inputs)
             .then((res) => navigate('/'))

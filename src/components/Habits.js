@@ -7,12 +7,12 @@ import Habit from "./Habit"
 
 export default function Habits({setStatus, status}){
     
-    const {/*newHabit, setNewHabit*/objDays,create,setCreate, BASE_URL, token,setListedHabites} =useAuth()
+    const {objDays,create,setCreate, BASE_URL, token,setListedHabites} =useAuth()
     
     const [newHabit, setNewHabit]=useState('');
     const [selectedDay, setSelectedDay] = useState([]);
     
-//    const [status, setStatus] =useState(false)
+
 
   
 
@@ -23,7 +23,7 @@ export default function Habits({setStatus, status}){
         
             
             const body = { name:newHabit , days: [...selectedDay]} 
-            console.log(body,"body")
+            
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`,            
@@ -34,9 +34,8 @@ export default function Habits({setStatus, status}){
             ,body, config)
             .then((res)=> {setStatus(!status)
                 setCreate(!create)
-//                setSelectedDay("")
                 setNewHabit("")
-                console.log(res.data,"foi")})
+                })
             .catch((err) => console.log(err.response.data))
        
     }
@@ -44,10 +43,9 @@ export default function Habits({setStatus, status}){
     function handleDay(day){
         
     const isSelected = selectedDay.some((s) => s === day)
-//        console.log(isSelected,"isselected", selectedDay,"selectedDay")
+
     if(isSelected){
-       
-//            setStatus(!status)
+
         const newList = selectedDay.filter((s) => s !== day)
         setSelectedDay(newList)
      }   else{
@@ -55,7 +53,7 @@ export default function Habits({setStatus, status}){
      }
 
     }
-    console.log(selectedDay,"lista nova",newHabit,"new")
+
     
     return(
         <>
@@ -81,7 +79,7 @@ export default function Habits({setStatus, status}){
         name={day.name} 
         handleDay={handleDay}
         isSelected={selectedDay.some((s) => s === day)}
-      //  teste={status}
+  
        ></Habit>))}
         </ContainerButton>
 

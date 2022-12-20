@@ -9,10 +9,8 @@ import HabitList from "../../components/HabitList"
 
 export default function HomePage (){
 
-    const {listedHabites, setListedHabites, BASE_URL,token,create, setCreate} = useAuth()
-    const [status, setStatus] =useState(false)
-    
-    console.log(token,"token")
+    const {listedHabites, setListedHabites, BASE_URL,token,create, setCreate, status, setStatus} = useAuth()
+   
     useEffect(()=>{
         const config = {
             headers: {
@@ -21,7 +19,7 @@ export default function HomePage (){
         };
         axios.get(`${BASE_URL}/habits`, config)
         .then((res)=> {setListedHabites(res.data)
-            console.log(listedHabites,"foi")})
+          })
         .catch((err) => console.log(err.response.data))
     },[status])
 

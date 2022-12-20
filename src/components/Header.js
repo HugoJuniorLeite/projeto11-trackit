@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { useAuth } from "../providers/auth"
-//import backgroundColorHeader from "../constants/colors/backgroundColorHeader"
+
 
 export default function Header(){
 

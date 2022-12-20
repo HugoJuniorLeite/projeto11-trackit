@@ -2,27 +2,27 @@ import styled from "styled-components"
 import { useAuth } from "../providers/auth"
 import trash from "../assets/images/Group.png"
 import axios from "axios"
+import { useEffect } from "react"
 
 export default function ({id,name,days}){
-const {objDays, BASE_URL,token}  =useAuth()
-
-
+    
+    const {objDays, BASE_URL,token,status, setStatus}  =useAuth()
+   
 function deleteHabit(){
-
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,            
         },
     };
-    axios.delete(`${BASE_URL}/${id}`, config)
-    .then((res)=> { /*setStatus(!status)*/
-//        setCreate(!create)
-//                setSelectedDay("")
-  //      setNewHabit("")
-        console.log(res.data,"foi")})
-    .catch((err) => console.log(err.response.data))
-
-}
+    axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config)
+    .then((res)=> {
+        
+        
+        setStatus(!status)
+      })
+        .catch((err) => console.log(err))
+        
+    }
     
 
 

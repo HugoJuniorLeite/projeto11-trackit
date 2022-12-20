@@ -36,7 +36,7 @@ const [listedHabites, setListedHabites] =useState([])
     const images ={logo:logo, description: "imagem da tracklt"}
     const BASE_URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit"
     const [token,setToken]=useState('')
-
+    const [status, setStatus] =useState(false)
     useEffect(() =>{
 
         const tokenStorage = localStorage.getItem("token");
@@ -46,31 +46,6 @@ const [listedHabites, setListedHabites] =useState([])
                 setToken("");
         }
     
-
-/*        const inputsStorage = localStorage.getItem("inputs");
-        if(inputsStorage){
-            setInputs(JSON.parse(inputsStorage))
-        } else {
-                setInputs({
-                email:"",
-                name:"",
-                image:"",
-                password:"",
-            
-            });
-        }
-
-        const userStorage = localStorage.getItem("user");
-        if(userStorage){
-            setUser(JSON.parse(userStorage))
-        } else {
-                setUser({
-                email:"",
-                password:"",    
-                
-            });
-        }
-        */
     },[])
     return(
         <AuthContext.Provider value={{user,setUser,
@@ -78,10 +53,10 @@ const [listedHabites, setListedHabites] =useState([])
         images,
         BASE_URL,
         listedHabites, setListedHabites,
-        //newHabit,setNewHabit,
         objDays,
         token, setToken,
         create,setCreate,
+        status, setStatus
        }}>
             
             {props.children}
